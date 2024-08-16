@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Bell, Bookmark, HomeIcon } from "lucide-react";
+import { Bell, Bookmark, HomeIcon, User } from "lucide-react";
 import Link from "next/link";
 
 interface MenuBarProps {
   className?: string;
+  username: string;
 }
 
-export default function MenuBar({ className }: MenuBarProps) {
+export default function MenuBar({ className, username }: MenuBarProps) {
   return (
     <div className={className}>
       <Button
@@ -18,6 +19,17 @@ export default function MenuBar({ className }: MenuBarProps) {
         <Link href="/">
           <HomeIcon />
           <span className="hidden lg:inline">Home</span>
+        </Link>
+      </Button>
+      <Button
+        variant="ghost"
+        className="flex items-center justify-start gap-3"
+        title="Profile"
+        asChild
+      >
+        <Link href={`/users/${username}`}>
+          <User />
+          <span className="hidden lg:inline">Profile</span>
         </Link>
       </Button>
       <Button
