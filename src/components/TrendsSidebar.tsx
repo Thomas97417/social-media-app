@@ -13,7 +13,9 @@ import UserTooltip from "./UserTooltip";
 export default function TrendsSidebar() {
   return (
     <div className="sticky top-[5.25rem] hidden h-fit md:block lg:w-80 w-72 flex-none space-y-5">
-      <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+      <Suspense
+        fallback={<Loader2 className="mx-auto animate-spin text-primary" />}
+      >
         <WhoToFollow />
         <TrendingTopic />
       </Suspense>
