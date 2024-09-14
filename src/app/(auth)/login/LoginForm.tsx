@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { loginSchema, LoginValues } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "./actions";
@@ -67,7 +68,7 @@ export default function LoginForm() {
           )}
         />
         <LoadingButton loading={isPending} type="submit" className="w-full">
-          Log in
+          {isPending ? <Loader2 className="animate-spin" /> : "Log in"}
         </LoadingButton>
       </form>
     </Form>
