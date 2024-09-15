@@ -12,17 +12,17 @@ export async function GET() {
 
   cookies().set("state", state, {
     path: "/",
-    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 10, // 10 minutes
+    httpOnly: true,
+    maxAge: 60 * 10,
     sameSite: "lax",
   });
 
   cookies().set("code_verifier", codeVerifier, {
     path: "/",
-    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 10, // 10 minutes
+    httpOnly: true,
+    maxAge: 60 * 10,
     sameSite: "lax",
   });
 
