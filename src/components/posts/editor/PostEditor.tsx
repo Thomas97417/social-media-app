@@ -11,6 +11,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { useDropzone } from "@uploadthing/react";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { ClipboardEvent, useRef } from "react";
 import { useSubmitPostMutation } from "./mutations";
 import "./styles.css";
@@ -78,7 +79,9 @@ export default function PostEditor() {
   return (
     <div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex gap-5">
-        <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
+        <Link href={`/users/${user.username}`}>
+          <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
+        </Link>
         <div {...rootProps} className="w-full">
           <EditorContent
             editor={editor}
