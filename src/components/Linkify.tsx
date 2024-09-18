@@ -43,6 +43,7 @@ function LinkifyHashtag({ children }: LinkifyProps) {
       regex={/(#[a-zA-Z0-9_-]+)/}
       component={(match, key) => (
         <Link
+          key={key}
           href={`/hashtag/${match.slice(1)}`}
           className="text-primary hover:underline"
         >
