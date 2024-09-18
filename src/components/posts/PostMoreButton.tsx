@@ -13,16 +13,20 @@ import DeletePostDialog from "./DeletePostDialog";
 interface PostMoreButtonProps {
   post: PostData;
   className?: string;
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
 }
 
 export default function PostMoreButton({
   post,
   className,
+  isMenuOpen,
+  setIsMenuOpen,
 }: PostMoreButtonProps) {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   return (
     <>
-      <DropdownMenu>
+      <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
         <DropdownMenuTrigger asChild>
           <Button size="icon" variant="ghost" className={className}>
             <MoreHorizontal className="size-5 text-muted-foreground" />

@@ -24,6 +24,7 @@ export default function Post({ post }: PostProps) {
   const { user } = useSession();
 
   const [showComments, setShowComments] = useState(false);
+  const [isPostMenuOpen, setIsPostMenuOpen] = useState(false);
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
@@ -54,7 +55,13 @@ export default function Post({ post }: PostProps) {
         {user.id === post.user.id && (
           <PostMoreButton
             post={post}
-            className="opacity-0 transition-opacity group-hover/post:opacity-100"
+            isMenuOpen={isPostMenuOpen}
+            setIsMenuOpen={setIsPostMenuOpen}
+            className={`transition-opacity ${
+              isPostMenuOpen
+                ? "opacity-100"
+                : "opacity-0 group-hover/post:opacity-100"
+            }`}
           />
         )}
       </div>

@@ -16,8 +16,13 @@ interface CommentProps {
 export default function Comment({ comment }: CommentProps) {
   const { user } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <div className="flex gap-3 py-3 group/comment justify-between">
+    <div
+      className="flex gap-3 py-3 group/comment justify-between"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="flex gap-3">
         <span className="hidden sm:inline">
           <UserTooltip user={comment.user}>
@@ -52,16 +57,11 @@ export default function Comment({ comment }: CommentProps) {
             isLikedByUser: comment.likes.length > 0,
           }}
         />
-        {comment.user.id === user.id && (
+        {comment.user.id === user.id && (isHovered || isMenuOpen) && (
           <CommentMoreButton
             comment={comment}
             isMenuOpen={isMenuOpen}
             setIsMenuOpen={setIsMenuOpen}
-            className={`ms-auto transition-opacity ${
-              isMenuOpen
-                ? "opacity-100"
-                : "opacity-0 sm:group-hover/comment:opacity-100"
-            }`}
           />
         )}
       </div>
