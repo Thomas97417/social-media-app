@@ -70,6 +70,19 @@ export function getCommentDataInclude(loggedInUserId: string) {
     user: {
       select: getUserDataSelect(loggedInUserId),
     },
+    likes: {
+      where: {
+        userId: loggedInUserId,
+      },
+      select: {
+        userId: true,
+      },
+    },
+    _count: {
+      select: {
+        likes: true,
+      },
+    },
   } satisfies Prisma.CommentInclude;
 }
 export type CommentData = Prisma.CommentGetPayload<{
@@ -121,4 +134,9 @@ export interface BookmarkInfo {
 
 export interface NotificationCountInfo {
   unreadCount: number;
+}
+
+export interface CommentLikeInfo {
+  likes: number;
+  isLikedByUser: boolean;
 }

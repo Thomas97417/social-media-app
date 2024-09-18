@@ -31,6 +31,7 @@ model User {
   likes Like[]
   bookmarks Bookmark[]
   comments Comment[]
+  commentLikes CommentLike[]
   receivedNotifications Notification[] @relation("Recipient")
   issuedNotifications Notification[] @relation("Issuer")
   createdAt DateTime @default(now())
@@ -97,10 +98,21 @@ model Comment {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   postId String
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  likes CommentLike[]
   
   createdAt DateTime @default(now())
 
   @@map("comments")
+}
+
+model CommentLike {
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  commentId String
+  comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, commentId])
+  @@map("comment_likes")
 }
 
 model Like {
